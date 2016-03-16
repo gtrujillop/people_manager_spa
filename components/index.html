@@ -4,23 +4,34 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
     <link rel="stylesheet" href="assets/style/style.css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.2.0/toaster.css"></link>
+
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.2.0/toaster.js"></script>
+
     <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="/login/login.js"></script>
-    <script type="text/javascript" src="/package/package.js"></script>
+
+    <script type="text/javascript" src="../components/login/login.js"></script>
+    <script type="text/javascript" src="../components/login/services/loginService.js"></script>
+    <script type="text/javascript" src="../components/login/services/loginFactory.js"></script>
+    <script type="text/javascript" src="../components/login/controllers/homeController.js"></script>
+    <script type="text/javascript" src="../components/login/controllers/loginController.js"></script>
+
+<!--    <script type="text/javascript" src="/package/package.js"></script>
     <script type="text/javascript" src="/session/session.js"></script>
     <script type="text/javascript" src="/sessionResource/sessionResource.js"></script>
     <script type="text/javascript" src="/user/user.js"></script>
     <script type="text/javascript" src="/userPackage/userPackage.js"></script>
     <script type="text/javascript" src="/userSession/userSession.js"></script>
-    <script type="text/javascript" src="/userSessionToken/userSessionToken.js"></script>
+    <script type="text/javascript" src="/userSessionToken/userSessionToken.js"></script>-->
   </head>
   <body ng-app="learningSystem">
-   
-    
+    <toaster-container></toaster-container>
+    <div ui-view></div>
   </body>
 </html>

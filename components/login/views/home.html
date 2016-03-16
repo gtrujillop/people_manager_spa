@@ -1,0 +1,12 @@
+<div class="row" ng-controller="homeController">
+  <div class="jumbotron" ng-controller="loginController" ng-if="!isLogged">
+    <h3>Learning System Log In</h3>
+    <form id="loginForm" name="loginForm" ng-submit="login(loginForm.$valid)" novalidate>
+      <label>username:</label>
+      <input type="text" name="username" ng-model="user.username" required></input>
+      <label>password:</label>
+      <input type="password" name="password" ng-model="user.password" required></input>
+      <button type="submit">Log In</button>
+    </form>
+  </div>
+</div>

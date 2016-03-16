@@ -1,4 +1,4 @@
 (function () {
-    var login = angular.module('learningSystem.login', [ ]);
+    var login = angular.module('learningSystem.login', []);
 
 })();
