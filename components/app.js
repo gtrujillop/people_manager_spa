@@ -3,7 +3,8 @@
                                                   'ui.bootstrap',
                                                   'ngStorage',
                                                   'toaster',
-                                                  'learningSystem.home'
+                                                  'learningSystem.home',
+                                                  'learningSystem.session'
                                                   // 'learningSystem.user',
                                                   // 'learningSystem.session',
                                                   // 'learningSystem.package',
@@ -40,10 +41,11 @@
       user: {}
     };
 
-    $sessionStorage.isLogged = false;
-    $sessionStorage.authToken = '';
-    $sessionStorage.user = {};
-    factory.isLogged = false;
+    if ($sessionStorage === undefined){
+      $sessionStorage.isLogged = false;
+      $sessionStorage.authToken = '';
+      $sessionStorage.user = {};
+    };
 
     factory.getAuthToken = function () {
       return factory.authToken;
@@ -87,10 +89,11 @@
                                                                                 $state,
                                                                                 toaster,
                                                                                 $sessionStorage) {
-
-    $scope.isLogged = $sessionStorage.isLogged;
  
     $scope.login = login;
+    $scope.user = $sessionStorage.user;
+    $scope.isLogged = $sessionStorage.isLogged;
+    $scope.addClass = addClass;
 
     $scope.$watch(function(){return loginFactory.isLogged}, function(newValue, oldValue) {
         if (newValue !== oldValue) {
@@ -134,16 +137,24 @@
       }
     };
 
+    function addClass() {
+      $state.go('newclass');
+    }
+
   }]);
 
   mainApp.config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
-
         $stateProvider
           .state('home', {
               url: '/home',
-              templateUrl: '/login/views/home.html',
+              templateUrl: '/home/views/home.html',
               controller: 'homeController'
+          })
+          .state('newclass', {
+              url: '/classes/new',
+              templateUrl: '/session/views/newSession.html',
+              controller: 'sessionController'
           })
         $urlRouterProvider.otherwise('home');
     }]);
