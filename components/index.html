@@ -10,22 +10,31 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.2.0/toaster.js"></script>
 
     <script type="text/javascript" src="app.js"></script>
 
     <script type="text/javascript" src="/home/home.js"></script>
+    <script type="text/javascript" src="/home/controllers/homeController.js"></script>
     <script type="text/javascript" src="/home/services/homeService.js"></script>
     <script type="text/javascript" src="/home/services/homeFactory.js"></script>
-    <script type="text/javascript" src="/home/controllers/homeController.js"></script>
 
     <script type="text/javascript" src="/session/session.js"></script>
+    <script type="text/javascript" src="/session/controllers/sessionController.js"></script>
     <script type="text/javascript" src="/session/services/sessionService.js"></script>
     <script type="text/javascript" src="/session/services/sessionFactory.js"></script>
-    <script type="text/javascript" src="/session/controllers/sessionController.js"></script>
 
+     <script type="text/javascript" src="/package/package.js"></script>
+    <script type="text/javascript" src="/package/controllers/packageController.js"></script>
+    <script type="text/javascript" src="/package/services/packageService.js"></script>
+    <script type="text/javascript" src="/package/services/packageFactory.js"></script>
+
+      <script type="text/javascript" src="/subject/subject.js"></script>
+    <script type="text/javascript" src="/subject/controllers/subjectController.js"></script>
+    <script type="text/javascript" src="/subject/services/subjectService.js"></script>
+    <script type="text/javascript" src="/subject/services/subjectFactory.js"></script>
 <!--    <script type="text/javascript" src="/package/package.js"></script>
     <script type="text/javascript" src="/session/session.js"></script>
     <script type="text/javascript" src="/sessionResource/sessionResource.js"></script>
@@ -45,6 +54,9 @@
               </p>
               <p class="navbar-text navbar-right" ng-show="isLogged">
                 Signed in as <a href="#" class="navbar-link">{{user.firstname}} {{user.lastname}}</a>
+              </p>
+              <p class="navbar-text navbar-right" ng-show="isLogged">
+                <a href="#" class="navbar-link" ng-click="logout()">logout</a>
               </p>
                <!-- Single button -->
               <div class="btn-group" uib-dropdown is-open="status.isopen"  ng-show="isLogged && user.is_admin">

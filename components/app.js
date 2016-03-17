@@ -4,7 +4,9 @@
                                                   'ngStorage',
                                                   'toaster',
                                                   'learningSystem.home',
-                                                  'learningSystem.session'
+                                                  'learningSystem.session',
+                                                  'learningSystem.package',
+                                                  'learningSystem.subject'
                                                   // 'learningSystem.user',
                                                   // 'learningSystem.session',
                                                   // 'learningSystem.package',
@@ -91,6 +93,7 @@
                                                                                 $sessionStorage) {
  
     $scope.login = login;
+    $scope.logout = logout;
     $scope.user = $sessionStorage.user;
     $scope.isLogged = $sessionStorage.isLogged;
     $scope.addClass = addClass;
@@ -135,6 +138,11 @@
           toaster.pop('error', "", $scope.status);
         });
       }
+    };
+
+    function logout() {
+      loginFactory.setAuthStatus(false);
+      $sessionStorage.$reset();
     };
 
     function addClass() {
