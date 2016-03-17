@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
-    <link rel="stylesheet" href="assets/style/style.css"></link>
+    <link rel="stylesheet" href="style.css"></link>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.2.0/toaster.css"></link>
 
 
@@ -16,11 +16,10 @@
 
     <script type="text/javascript" src="app.js"></script>
 
-    <script type="text/javascript" src="../components/login/login.js"></script>
-    <script type="text/javascript" src="../components/login/services/loginService.js"></script>
-    <script type="text/javascript" src="../components/login/services/loginFactory.js"></script>
-    <script type="text/javascript" src="../components/login/controllers/homeController.js"></script>
-    <script type="text/javascript" src="../components/login/controllers/loginController.js"></script>
+    <script type="text/javascript" src="/home/home.js"></script>
+    <script type="text/javascript" src="/home/services/homeService.js"></script>
+    <script type="text/javascript" src="/home/services/homeFactory.js"></script>
+    <script type="text/javascript" src="/home/controllers/homeController.js"></script>
 
 <!--    <script type="text/javascript" src="/package/package.js"></script>
     <script type="text/javascript" src="/session/session.js"></script>
@@ -32,6 +31,43 @@
   </head>
   <body ng-app="learningSystem">
     <toaster-container></toaster-container>
+    <div class="row" ng-controller="loginController" >
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+               <p class="navbar-text navbar-right" ng-show="!isLogged">
+                Signed in as <a href="#" class="navbar-link">Guest User</a>
+              </p>
+              <p class="navbar-text navbar-right" ng-show="isLogged">
+                Signed in as <a href="#" class="navbar-link">{{user.firstname}} {{user.lastname}}</a>
+              </p>
+               <!-- Single button -->
+              <div class="btn-group" uib-dropdown is-open="status.isopen"  ng-show="isLogged && user.is_admin">
+                <button id="adminMenu" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                  Menu <span class="caret"></span>
+                </button>
+                <ul uib-dropdown-menu role="menu" aria-labelledby="adminMenu">
+                  <li role="menuitem"><a href="#" ng-click="newClass()">Add Class</a></li>
+                  <li role="menuitem"><a href="#" ng-click="addPackage()">Add Package</a></li>
+                  <li role="menuitem"><a href="#" ng-click="assignPackage()">Assign Package</a></li>
+                  <li role="menuitem"><a href="#" ng-click="startClass()">Start Class</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div class="jumbotron login-panel" ng-show="!isLogged">
+          <h3>Learning System Log In</h3>
+          <form id="loginForm" name="loginForm" ng-submit="login(loginForm.$valid)" novalidate>
+             <label>username:</label>
+             <input type="text" name="username" ng-model="user.username" required></input>
+             <label>password:</label>
+             <input type="password" name="password" ng-model="user.password" required></input>
+             <button type="submit">Log In</button>
+          </form>
+        </div>
+    </div>
+    
     <div ui-view></div>
   </body>
 </html>
