@@ -164,6 +164,11 @@
               templateUrl: '/session/views/newSession.html',
               controller: 'sessionController'
           })
+          .state('classindex', {
+              url: '/classes',
+              templateUrl: '/session/views/sessionList.html',
+              controller: 'sessionController'
+          })
         $urlRouterProvider.otherwise('home');
     }]);
 })();

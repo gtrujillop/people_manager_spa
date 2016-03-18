@@ -22,6 +22,7 @@
 
     getPackages();
     getSubjects();
+    listSessions();
 
     $scope.$watch($scope.packages, function(newValue, oldValue) {
         if (newValue !== oldValue) {
@@ -34,6 +35,12 @@
           $scope.subjects = newValue;
         }
     }, true);
+
+    $scope.classPopover = {
+      content: '',
+      templateUrl: 'classPopoverTemplate.html',
+      title: ''
+    };
 
     $scope.dateOptions = {
       formatYear: 'YYYY',
@@ -64,8 +71,22 @@
       if (formIsValid) {
         sessionService.save($scope.session).success(function(data){
           toaster.pop('success', "", "Class saved succesfully");
+          $state.go('classindex');
         }).error(function(data){
           toaster.pop('error', "", "Could not save class.");
+        })
+      }
+    };
+
+    function listSessions() {
+      if ($state.current.name == 'classindex') {
+        sessionService.getAll().success(function(data){
+          $scope.sessions = data;
+          if($scope.sessions.length < 1){
+            toaster.pop('warning', "", "No courses available")
+          }
+        }).error(function(){
+           toaster.pop('error', "", "Could not retrieve courses.");
         })
       }
     };

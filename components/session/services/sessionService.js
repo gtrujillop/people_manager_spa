@@ -12,6 +12,10 @@
       return $http.post(urlBase + '/sessions', { session: session });
     };
 
+     sessionService.getAll = function () {
+      return $http.get(urlBase + '/sessions');
+    };
+
     return sessionService;
   }]);
-})();10
+})();101
