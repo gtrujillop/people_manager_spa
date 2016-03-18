@@ -11,3 +11,10 @@
   margin: auto;
   padding: 20px;
 }
+
+.class-options {
+  margin: auto;
+  width: 80px;
+  cursor: pointer;
+
+}

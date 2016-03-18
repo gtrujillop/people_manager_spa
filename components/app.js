@@ -147,7 +147,7 @@
 
     function addClass() {
       $state.go('newclass');
-    }
+    };
 
   }]);
 

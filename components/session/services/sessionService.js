@@ -16,6 +16,12 @@
       return $http.get(urlBase + '/sessions');
     };
 
+    sessionService.update = function (session, id) {
+      // session's id param is not allowed in SessionController
+      delete session.id;
+      return $http.put(urlBase + '/sessions/' + id, {session: session});
+    };
+
     return sessionService;
   }]);
 })();101

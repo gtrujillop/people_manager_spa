@@ -16,9 +16,13 @@
                                                                                 $state,
                                                                                 toaster,
                                                                                 $sessionStorage) {
+    // Session is equivalent to a class.
+
     $scope.session = {};
     $scope.isLogged = $sessionStorage.isLogged;
     $scope.save = save;
+    $scope.startSession = startSession;
+    $scope.addSession = addSession;
 
     getPackages();
     getSubjects();
@@ -70,13 +74,32 @@
     function save(formIsValid) {
       if (formIsValid) {
         sessionService.save($scope.session).success(function(data){
-          toaster.pop('success', "", "Class saved succesfully");
+          toaster.pop('success', "", "Class saved succesfully.");
           $state.go('classindex');
         }).error(function(data){
           toaster.pop('error', "", "Could not save class.");
         })
       }
     };
+
+    function addSession() {
+      $state.go('newclass');
+    }
+
+    function startSession(index) {
+      var sessionToStart = angular.copy($scope.sessions[index]);
+      var id = sessionToStart.id;
+      sessionToStart.has_started = true;
+      sessionToStart.start_date = new Date();
+      delete sessionToStart.package;
+      delete sessionToStart.subject;
+      sessionService.update(sessionToStart, id).success(function(data) {
+          toaster.pop('success', "", "Class started from: " + data.start_date);
+          $scope.sessions[index] = data;
+      }).error(function() {
+        toaster.pop('error', "", "Could not start this class.");
+      })
+    }
 
     function listSessions() {
       if ($state.current.name == 'classindex') {
