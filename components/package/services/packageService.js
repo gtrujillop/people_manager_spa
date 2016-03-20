@@ -12,6 +12,10 @@
       return $http.get(urlBase + '/packages');
     };
 
+    packageService.save = function(package) {
+      return $http.post(urlBase + '/packages', { package: package })
+    }
+
     return packageService;
   }]);
 })();

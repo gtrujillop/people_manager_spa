@@ -1,0 +1,66 @@
+<div class="row" ng-show="isLogged">
+  <div class="col-md-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">New User</h3>
+      </div>
+      <div class="panel-body">
+
+        <form name="newUserForm" id="newUserForm" ng-submit="save(newUserForm.$valid)" novalidate>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="firstName">First Name:</label>
+            </div>
+            <div class="col-md-6">
+              <input name="name" type="text" ng-model="user.firstname" required>
+            </div>
+          </div>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label for="lastName">Last Name:</label>
+            </div>
+            <div class="col-md-6">
+              <input name="name" type="text" ng-model="user.lastname" required>
+            </div>
+          </div>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label for="username">username:</label>
+            </div>
+            <div class="col-md-6">
+              <input name="name" type="text" ng-model="user.username" required>
+            </div>
+          </div>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label for="username">email:</label>
+            </div>
+            <div class="col-md-6">
+              <input name="name" type="email" ng-model="user.email" required>
+            </div>
+          </div>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label for="username">password:</label>
+            </div>
+            <div class="col-md-6">
+              <input name="name" type="password" ng-model="user.password" required>
+            </div>
+          </div>
+          <br/>
+          <button type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+    </div>
+  <div class="col-md-6">
+  </div>  
+</div>

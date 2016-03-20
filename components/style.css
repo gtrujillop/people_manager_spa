@@ -16,5 +16,8 @@
   margin: auto;
   width: 80px;
   cursor: pointer;
+}
 
+.link {
+  cursor: pointer;
 }

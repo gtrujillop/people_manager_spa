@@ -106,10 +106,10 @@
         sessionService.getAll().success(function(data){
           $scope.sessions = data;
           if($scope.sessions.length < 1){
-            toaster.pop('warning', "", "No courses available")
+            toaster.pop('warning', "", "No classes available")
           }
         }).error(function(){
-           toaster.pop('error', "", "Could not retrieve courses.");
+           toaster.pop('error', "", "Could not retrieve classes.");
         })
       }
     };

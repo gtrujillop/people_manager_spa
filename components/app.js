@@ -6,7 +6,8 @@
                                                   'learningSystem.home',
                                                   'learningSystem.session',
                                                   'learningSystem.package',
-                                                  'learningSystem.subject'
+                                                  'learningSystem.subject',
+                                                  'learningSystem.user'
                                                   // 'learningSystem.user',
                                                   // 'learningSystem.session',
                                                   // 'learningSystem.package',
@@ -96,7 +97,9 @@
     $scope.logout = logout;
     $scope.user = $sessionStorage.user;
     $scope.isLogged = $sessionStorage.isLogged;
-    $scope.addClass = addClass;
+    $scope.listPackages = listPackages;
+    $scope.listSessions = listSessions;
+    $scope.listUsers = listUsers;
 
     $scope.$watch(function(){return loginFactory.isLogged}, function(newValue, oldValue) {
         if (newValue !== oldValue) {
@@ -143,12 +146,20 @@
     function logout() {
       loginFactory.setAuthStatus(false);
       $sessionStorage.$reset();
+      $state.go('home');
     };
 
-    function addClass() {
-      $state.go('newclass');
+    function listSessions() {
+      $state.go('classindex');
     };
 
+    function listPackages() {
+      $state.go('packageindex');
+    };
+
+    function listUsers() {
+      $state.go('userindex');
+    };
   }]);
 
   mainApp.config(['$stateProvider', '$urlRouterProvider',
@@ -168,6 +179,26 @@
               url: '/classes',
               templateUrl: '/session/views/sessionList.html',
               controller: 'sessionController'
+          })
+          .state('newpackage', {
+              url: '/packages/new',
+              templateUrl: '/package/views/newPackage.html',
+              controller: 'packageController'
+          })
+          .state('packageindex', {
+              url: '/packages',
+              templateUrl: '/package/views/packageList.html',
+              controller: 'packageController'
+          })
+          .state('newuser', {
+              url: '/users/new',
+              templateUrl: '/user/views/newUser.html',
+              controller: 'userController'
+          })
+          .state('userindex', {
+              url: '/users',
+              templateUrl: '/user/views/userList.html',
+              controller: 'userController'
           })
         $urlRouterProvider.otherwise('home');
     }]);
