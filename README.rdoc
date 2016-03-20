@@ -7,5 +7,5 @@ Developed with Angular
 clone this repository into a web server folder
 e.g (apache's /var/www/html/learning_system_spa on ubuntu)
 
-In the spa's component folder you will find each componend (e.g. user, package, class a.k.a session). Be aware of the baseURL var, this mean the rails API url (by default localhost).
+In the spa's components folder you will find each component(e.g. user, package, class a.k.a session). Be aware of the baseURL var, this mean the rails API url (by default localhost).
 
