@@ -1,0 +1,23 @@
+.login-panel {
+  margin: auto;
+  padding: 20px;
+}
+
+.home-wrapper {
+  margin: auto;
+}
+
+.list {
+  margin: auto;
+  padding: 20px;
+}
+
+.class-options {
+  margin: auto;
+  width: 80px;
+  cursor: pointer;
+}
+
+.link {
+  cursor: pointer;
+}

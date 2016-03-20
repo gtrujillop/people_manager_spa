@@ -1,0 +1,78 @@
+<div class="row" ng-show="isLogged">
+  <div class="col-md-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">New Class</h3>
+      </div>
+      <div class="panel-body">
+
+        <form name="newClassForm" id="newClassForm" ng-submit="save(newClassForm.$valid)" novalidate>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="name">Name:</label>
+            </div>
+            <div class="col-md-6">
+              <input name="name" type="text" ng-model="session.name" required>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6">
+             <label for="startDate">Start Date:</label>
+            </div>
+            <div class="col-md-6">
+             <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup ng-model="session.start_date" is-open="date1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openDate1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>  
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6">
+            <label for="endDate">End Date:</label>
+            </div>
+            <div class="col-md-6">
+              <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup ng-model="session.end_date" is-open="date2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openDate2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="package">Package:</label>
+            </div>
+            <div class="col-md-6">
+              <select 
+                  ng-model="session.package_id"
+                  ng-options="package.id as package.name for package in packages">
+              </select>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="topic">Subject:</label>
+            </div>
+            <div class="col-md-6">
+              <select
+                  ng-model="session.subject_id"
+                  ng-options="subject.id as subject.name for subject in subjects">
+              </select>
+            </div>
+          </div>
+          <br/>
+          <button type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+    </div>
+  <div class="col-md-6">
+  </div>  
+</div>

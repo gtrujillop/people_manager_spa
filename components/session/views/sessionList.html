@@ -1,0 +1,42 @@
+<div class="row" ng-show="isLogged" >
+  <div class="panel panel-primary list">
+    <div class="panel-heading">
+      <h3 class="panel-title">Class List</h3>
+    </div>
+    <div class="row">
+      <div class="col-md-2"><h4>Class Name</h4></div>
+      <div class="col-md-2"><h4>Start Date</h4></div>
+      <div class="col-md-2"><h4>End Date</h4></div>
+      <div class="col-md-2"><h4>Package</h4></div>
+      <div class="col-md-2"><h4>Subject</h4></div>
+      <div class="col-md-2">
+      </div>
+    </div>
+     <div class="row" ng-repeat="session in sessions">
+      <div class="col-md-2">{{session.name}} {{session.has_started ? '(started)' : ''}}</div>
+      <div class="col-md-2">{{session.start_date}}</div>
+      <div class="col-md-2">{{session.end_date}}</div>
+      <div class="col-md-2">{{session.package.name}}</div>
+      <div class="col-md-2">{{session.subject.name}}</div>
+      <div class="col-md-2">
+        <button class="glyphicon glyphicon-option-vertical"
+                      type="button"
+                      uib-popover-template="classPopover.templateUrl"
+                      popover-trigger="outsideClick"
+                      popover-placement="right">
+        </button>
+      </div>
+    </div>  
+  </div>
+  <button type="button" class="btn btn-primary" ng-click="addSession()">Add Class</button>
+  <script type="text/ng-template" id="classPopoverTemplate.html">
+    <div class="row">
+      <div class="glyphicon glyphicon-pencil class-options" ng-click="editClass($index)">Edit</div></div>
+    <div class="row">
+      <div class="glyphicon glyphicon-dashboard class-options" ng-click="startSession($index)">Start</div></div>
+    </div>
+     <div class="row">
+      <div class="glyphicon glyphicon-trash class-options" ng-click="deleteClass($index)">Delete</div></div>
+    </div>
+  </script> 
+<div>
