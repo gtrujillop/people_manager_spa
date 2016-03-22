@@ -15,7 +15,7 @@
       <div class="col-md-3">{{user.username}}</div>
       <div class="col-md-3">{{user.firstname}} {{user.lastname}}</div>
       <div class="col-md-3">{{user.email}}</div>
-      <div class="col-md-1">{{user.package_count}}</div>
+      <div class="col-md-1 link" ng-click="userPackages($index)">{{user.package_count}}</div>
       <div class="col-md-2">
         <button class="glyphicon glyphicon-option-vertical"
                       type="button"
@@ -33,6 +33,9 @@
     </div>
      <div class="row">
       <div class="glyphicon glyphicon-trash class-options" ng-click="deleteUser($index)">Delete</div></div>
+    </div>
+    <div class="row">
+      <div class="glyphicon glyphicon-trash class-options" ng-click="addPackages($index)">Delete</div></div>
     </div>
   </script> 
 <div>

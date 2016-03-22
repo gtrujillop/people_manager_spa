@@ -3,22 +3,28 @@
   user.controller("userController", ["$scope",
                                                                      "userService",
                                                                      "packageService",
+                                                                     "userFactory",
                                                                      "$state",
                                                                      "toaster",
                                                                      "$sessionStorage",
                                                                      function($scope,
                                                                                     userService,
                                                                                     packageService,
+                                                                                    userFactory,
                                                                                     $state,
                                                                                     toaster,
                                                                                     $sessionStorage) {
 
-    $scope.user = {is_admin: 0};
+    $scope.user = { is_admin: 0, packages: [] };
     $scope.isLogged = $sessionStorage.isLogged;
     $scope.save = save;
     $scope.addUser= addUser;
+    $scope.userPackages = userPackages;
+    $scope.addPackage = addPackage;
 
     listUsers();
+    getPackages();
+    getUserForPackages()
 
     $scope.userPopover = {
       content: '',
@@ -27,7 +33,7 @@
     };
 
     function save(formIsValid) {
-      if (formIsValid) {
+      if (formIsValid && $scope.user.packages.length > 0) {
         userService.save($scope.user).success(function(data){
           toaster.pop('success', "", "user created succesfully.");
           $state.go('userindex');
@@ -51,6 +57,48 @@
          toaster.pop('error', "", "Could not retrieve users.");
       })      
     };
+
+    function userPackages(index) {
+      if ($scope.users[index].package_count > 0) {
+        packageService.getByUser($scope.users[index].id).success(function(data){
+          $scope.user = $scope.users[index]
+          $scope.user.packages = data;
+          userFactory.setUser($scope.user);
+          $state.go('userpackages', {id: $scope.user.id})
+        }).error(function(){
+           toaster.pop('error', "", "Could not retrieve packages for this user.");
+        })  
+
+      } else {
+        toaster.pop('warning', "", "No packages available for this user.");
+      }   
+    };
+
+    function addPackage() {
+      $scope.user.packages.push({ package_id: $scope.packages[0].id });
+    };
+
+    function getPackages() {
+      if ($state.current.name !== 'newuser') {
+        return;
+      };
+
+      packageService.getAll().success(function(data){
+        $scope.packages = data;
+        if ($scope.packages.length < 1) {
+          toaster.pop('warning', "", "No packages available")
+        }
+      }).error(function() {
+         toaster.pop('error', "", "Could not retrieve packages.");
+      })
+    }; 
+
+    function getUserForPackages() {
+      if ($state.current.name !== 'userpackages') {
+        return;
+      };
+      $scope.user = userFactory.getUser();
+    }
 
   }]);
 

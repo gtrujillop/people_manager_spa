@@ -200,6 +200,11 @@
               templateUrl: '/user/views/userList.html',
               controller: 'userController'
           })
+          .state('userpackages', {
+              url: '/users/:id/packages',
+              templateUrl: '/user/views/userPackages.html',
+              controller: 'userController'
+          })
         $urlRouterProvider.otherwise('home');
     }]);
 })();

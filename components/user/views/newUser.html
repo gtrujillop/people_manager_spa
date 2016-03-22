@@ -56,7 +56,20 @@
             </div>
           </div>
           <br/>
-          <button type="submit">Save</button>
+          <div class="row packages">
+            <div class="row">
+               <label for="topic">Packages </label>
+              <span class="glyphicon glyphicon-plus link" aria-hidden="true" ng-click="addPackage()"></span>
+            </div>
+            <div class="row" ng-repeat="package in user.packages">
+                <select
+                  ng-model="package_id"
+                  ng-options="package.id as package.name for package in packages"
+                  required>
+                </select>
+            </div>           
+          </div>
+          <button type="submit" class="btn btn-success">Save</button>
         </form>
       </div>
     </div>

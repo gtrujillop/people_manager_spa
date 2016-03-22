@@ -12,6 +12,10 @@
       return $http.get(urlBase + '/packages');
     };
 
+    packageService.getByUser = function (userId) {
+      return $http.get(urlBase + '/users/' + userId + '/packages');
+    };
+
     packageService.save = function(package) {
       return $http.post(urlBase + '/packages', { package: package })
     }

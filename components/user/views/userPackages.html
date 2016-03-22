@@ -1,0 +1,20 @@
+<div class="row" ng-show="isLogged" >
+  <div class="panel panel-primary list">
+    <div class="panel-heading">
+      <h3 class="panel-title">Package List for {{user.firstname}} {{user.lastname}}</h3>
+    </div>
+    <div class="row">
+      <div class="col-md-4"><h4>Package Name</h4></div>
+      <div class="col-md-4"><h4># Classes</h4></div>
+      <div class="col-md-4">
+      </div>
+    </div>
+     <div class="row" ng-repeat="package in user.packages">
+      <div class="col-md-4">{{package.name}}</div>
+      <div class="col-md-4">{{package.session_count}}</div>
+      <div class="col-md-4">
+      
+      </div>
+    </div>  
+  </div>
+<div>
