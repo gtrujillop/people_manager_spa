@@ -19,7 +19,7 @@
               templateUrl: '/person/views/personList.html',
               controller: 'personController'
           })
-          .state('editPersons', {
+          .state('editPerson', {
             url: '/persons/:id/edit',
               templateUrl: '/person/views/editPerson.html',
               controller: 'personController'

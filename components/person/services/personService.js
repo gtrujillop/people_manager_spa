@@ -1,25 +1,23 @@
 (function () {
-  var package = angular.module('learningSystem.package');
-  package.service('packageService', ['$http',
-                                                             '$stateParams',
-                                                              function ($http,
-                                                                             $stateParams) {
+  var person = angular.module('peopleManager.person');
+  person.service('personService', ['$http',
+                                   '$stateParams',
+                                   function ($http,                                                                   $stateParams) {
+    var urlBase = 'http://localhost:3000';
+    var personService = {};
 
-    var urlBase = 'http://localhost:3001';
-    var packageService = {};
-
-    packageService.getAll = function () {
-      return $http.get(urlBase + '/packages');
+    personService.getAll = function () {
+      return $http.get(urlBase + '/people');
     };
 
-    packageService.getByUser = function (userId) {
-      return $http.get(urlBase + '/users/' + userId + '/packages');
-    };
-
-    packageService.save = function(package) {
-      return $http.post(urlBase + '/packages', { package: package })
+    packageService.save = function(person) {
+      if (person.id !== undefined) {
+        return $http.put(urlBase + '/people/' + person.id  , { person: person })
+      } else {
+        return $http.post(urlBase + '/people', { person: person })
+      }
     }
 
-    return packageService;
+    return personService;
   }]);
 })();
