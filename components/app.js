@@ -5,30 +5,33 @@
                                                  'toaster',
                                                  'peopleManager.person']);
 
+  mainApp.run(['$state', function ($state) {
+     $state.transitionTo('listpeople');
+  }]);
 
   mainApp.config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
         $stateProvider
-          .state('newPerson', {
-              url: '/persons/new',
+          .state('newperson', {
+              url: '/people/new',
               templateUrl: '/person/views/newPerson.html',
               controller: 'personController'
           })
-          .state('listPersons', {
-              url: '/persons',
+          .state('listpeople', {
+              url: '/people',
               templateUrl: '/person/views/personList.html',
               controller: 'personController'
           })
-          .state('editPerson', {
-            url: '/persons/:id/edit',
+          .state('editperson', {
+            url: '/people/:id/edit',
               templateUrl: '/person/views/editPerson.html',
               controller: 'personController'
           })
-          .state('personProfile', {
-            url: '/persons/:id',
+          .state('personprofile', {
+            url: '/people/:id',
               templateUrl: '/person/views/showPerson.html',
               controller: 'personController'
           })
-        $urlRouterProvider.otherwise('listPersons');
+        $urlRouterProvider.otherwise('listpeople');
     }]);
 })();
