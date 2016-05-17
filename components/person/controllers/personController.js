@@ -19,6 +19,7 @@
     $scope.showPerson = showPerson;
     $scope.listPersons = listPersons;
     $scope.returnToList = returnToList;
+    $scope.calculateAge = calculateAge;
 
     $scope.listPersons();
 
@@ -45,13 +46,22 @@
       opened: false
     };
 
+    function calculateAge(birthDate) {
+      var now = new Date(); 
+      var time = now.getTime();
+      var birth = Date.parse(birthDate);
+      var age = (time - birth) / (1000 * 60 * 60 * 24 * 365);
+      var result = Math.round(age * 100) / 100
+      return Math.floor(result);
+    }
+
     // Works for new and edit
     // based on object's Id
     function save(formIsValid) {
       if (formIsValid) {
         personService.save($scope.person).success(function(data){
           toaster.pop('success', "", "Person saved succesfully.");
-          $state.go('listpersons');
+          $state.go('listpeople');
         }).error(function(data){
           toaster.pop('error', "", "Could not save person.");
         })
@@ -79,7 +89,7 @@
     };
 
     function listPersons() {
-      if ($state.current.name == 'listpersons') {
+      if ($state.current.name == 'listpeople') {
         personService.getAll().success(function(data){
           $scope.people = data;
           if($scope.people === null || $scope.people.length < 1){
