@@ -3,11 +3,13 @@
   person.controller("personController", ["$scope",
                                            "personService",
                                            "$state",
+                                           "$window",
                                            "toaster",
                                            "$sessionStorage",
                                            function($scope,
                                                     personService,
                                                     $state,
+                                                    $window,
                                                     toaster,
                                                     $sessionStorage) {
 
@@ -76,12 +78,15 @@
       $state.go('editperson');
     };
 
-    function destroyPerson(personId) {
-      personService.destroy(personId).success(function(data){
-        toaster.pop('success', "", "Person was deleted successfully.")
-      }).error(function(){
-         toaster.pop('error', "", "Could not delete person.");
-      })      
+    function destroyPerson(personId, index) {
+      if ($window.confirm("Do you want to proceed ?")) {
+        $scope.people.splice(index, 1);
+        personService.destroy(personId).success(function(data){
+          toaster.pop('success', "", "Person was deleted successfully.")
+        }).error(function(){
+           toaster.pop('error', "", "Could not delete person.");
+        })      
+      }
     };
 
     function showPerson(personId) {
