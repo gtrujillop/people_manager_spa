@@ -3,19 +3,16 @@
   "version": "0.0.0",
   "private": false,
   "author": "Gaston Trujillo Pulgar",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "engines": {
     "node": "5.1.0",
     "npm": "3.4.1"
   },
-  "scripts": {
-    "start": "node server/web.js",
-    "test": "grunt test"
-  },
   "dependencies": {
-    "bower": "1.7.1",
-    "express": "4.13.3"
+    "ejs": "~1.0.0",
+    "express": "~4.9.8"
   },
-  "cacheDirectories": ["node_modules"]
+  "cacheDirectories": [
+    "node_modules"
+  ]
 }
