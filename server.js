@@ -8,11 +8,9 @@ var port = process.env.PORT || 8080;
 // make express look in the public directory for assets (css/js/img)
 app.use(express.static(__dirname + '/components'));
 
-// set the home page route
-app.get('/#/people', function(req, res) {
-
-    // make sure index is in the right directory. In this case /app/index.html
-    res.render('index');
+// application -------------------------------------------------------------
+app.get('/', function(req, res) {
+    res.sendfile('index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });
 
 app.listen(port, function() {
