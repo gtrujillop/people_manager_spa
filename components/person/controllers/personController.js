@@ -25,6 +25,7 @@
     $scope.getPerson = getPerson;
     $scope.returnToList = returnToList;
     $scope.calculateAge = calculateAge;
+    $scope.disableForm = disableForm;
     $scope.formDisabled = false;
 
     $scope.listPersons();
@@ -80,7 +81,7 @@
       $state.go('newperson');
     };
 
-    function destroyPerson(person, index) {
+    function destroyPerson(person) {
       if ($window.confirm("Do you want to proceed ?")) {
         personService.destroy(person.id).success(function(data){
           $scope.people.splice($scope.people.indexOf(person),1);
@@ -126,10 +127,17 @@
       }
     };
 
-    function editPerson() {  
+    function editPerson() {
+      $scope.originalPerson = angular.copy($scope.person);
       toaster.pop('warning', "", "Edit mode ON")
       $scope.formDisabled = false;
     };
+
+    function disableForm() {
+      toaster.pop('warning', "", "Edit mode OFF");
+      $scope.person = $scope.originalPerson;
+      $scope.formDisabled = true;
+    }
 
     function returnToList() {
       $state.go('listpeople');

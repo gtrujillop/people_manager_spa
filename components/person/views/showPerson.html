@@ -91,7 +91,11 @@
           </div>
           <br/>
           <button ng-click="editPerson()" class="btn btn-success" type="button">Edit</button>
-           <button ng-if="!formDisabled" class="btn btn-primary" type="submit">Save</button>
+          <button ng-if="!formDisabled" 
+                        type="button"
+                        ng-click="disableForm()">Cancel</button>
+          <button ng-click="destroyPerson(person)" class="btn btn-danger" type="button">Delete</button>
+           <button ng-if="!formDisabled" class="btn btn-primary" type="submit">Save</button>           
         </form>
     
       </div>
