@@ -29,3 +29,12 @@
 .has-error {
   color: red;
 }
+
+.link {
+  color: blue;
+}
+
+.gravatar {
+  margin-bottom: 20px;
+  text-align: center;
+}

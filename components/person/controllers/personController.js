@@ -3,12 +3,14 @@
   person.controller("personController", ["$scope",
                                            "personService",
                                            "$state",
+                                           "$stateParams",
                                            "$window",
                                            "toaster",
                                            "$sessionStorage",
                                            function($scope,
                                                     personService,
                                                     $state,
+                                                    $stateParams,
                                                     $window,
                                                     toaster,
                                                     $sessionStorage) {
@@ -20,10 +22,14 @@
     $scope.destroyPerson = destroyPerson;
     $scope.showPerson = showPerson;
     $scope.listPersons = listPersons;
+    $scope.getPerson = getPerson;
     $scope.returnToList = returnToList;
     $scope.calculateAge = calculateAge;
+    $scope.formDisabled = false;
 
     $scope.listPersons();
+    $scope.getPerson();
+
 
     $scope.personPopover = {
       content: '',
@@ -74,15 +80,11 @@
       $state.go('newperson');
     };
 
-    function editPerson() {
-      $state.go('editperson');
-    };
-
-    function destroyPerson(personId, index) {
+    function destroyPerson(person, index) {
       if ($window.confirm("Do you want to proceed ?")) {
-        $scope.people.splice(index, 1);
-        personService.destroy(personId).success(function(data){
-          toaster.pop('success', "", "Person was deleted successfully.")
+        personService.destroy(person.id).success(function(data){
+          $scope.people.splice($scope.people.indexOf(person),1);
+          toaster.pop('success', "", "Person was deleted successfully.");
         }).error(function(){
            toaster.pop('error', "", "Could not delete person.");
         })      
@@ -90,7 +92,7 @@
     };
 
     function showPerson(personId) {
-      $state.go('personprofile');
+      $state.go('personprofile', {id: personId});
     };
 
     function listPersons() {
@@ -104,6 +106,29 @@
            toaster.pop('error', "", "Could not retrieve people.");
         })
       }
+    };
+
+
+    function getPerson() {
+      if ($state.current.name == 'personprofile') {
+        console.log($stateParams.id);
+        personService.getById($stateParams.id).success(function(data){
+          $scope.person = data;
+          
+          $scope.person.birthdate = new Date($scope.person.birthdate);
+          $scope.formDisabled = true;
+          if($scope.person === null){
+            toaster.pop('warning', "", "No person available")
+          }
+        }).error(function(){
+           toaster.pop('error', "", "Could not retrieve person.");
+        })
+      }
+    };
+
+    function editPerson() {  
+      toaster.pop('warning', "", "Edit mode ON")
+      $scope.formDisabled = false;
     };
 
     function returnToList() {

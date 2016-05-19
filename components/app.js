@@ -1,9 +1,10 @@
 (function () {
   var mainApp = angular.module('peopleManager', ['ui.router',
-                                                 'ui.bootstrap',
-                                                 'ngStorage',
-                                                 'toaster',
-                                                 'peopleManager.person']);
+                                                                            'ui.gravatar',
+                                                                            'ui.bootstrap',
+                                                                            'ngStorage',
+                                                                            'toaster',
+                                                                            'peopleManager.person']);
 
   mainApp.run(['$state', function ($state) {
      $state.transitionTo('listpeople');
