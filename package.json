@@ -1,8 +1,8 @@
 {
-  "name": "AppName",
+  "name": "people_manager_spa",
   "version": "0.0.0",
   "private": false,
-  "author": "your-name",
+  "author": "Gaston Trujillo Pulgar",
   "devDependencies": {
   },
   "engines": {
@@ -10,8 +10,8 @@
     "npm": "3.4.1"
   },
   "scripts": {
-    "test": "grunt test",
-    "postinstall": "bower install"
+    "start": "node server/web.js",
+    "test": "grunt test"
   },
   "dependencies": {
     "bower": "1.7.1",
