@@ -25,3 +25,7 @@
 .packages {
   margin: auto;
 }
+
+.has-error {
+  color: red;
+}

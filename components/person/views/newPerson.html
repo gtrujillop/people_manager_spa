@@ -5,14 +5,15 @@
         <h3 class="panel-title">New Person</h3>
       </div>
       <div class="panel-body">
-
+      <p ng-show="newPersonForm.$submitted && !newPersonForm.$valid" class="has-error">Fields are Invalid or not present.</p>
         <form name="newPersonForm" id="newPersonForm" ng-submit="save(newPersonForm.$valid)" novalidate>
           <div class="row">
             <div class="col-md-6">
               <label for="firstName">First Name:</label>
             </div>
             <div class="col-md-6">
-              <input name="firstName" type="text" ng-model="person.first_name" required>
+              <p ng-show="newPersonForm.firstName.$invalid && !newPersonForm.firstName.$pristine" class="has-error">First Name is invalid.</p>
+              <input  class="form-control" name="firstName" type="text" ng-model="person.first_name" required>
             </div>
           </div>
           <br/>
@@ -21,7 +22,8 @@
               <label for="lastName">Last Name:</label>
             </div>
             <div class="col-md-6">
-              <input name="lastName" type="text" ng-model="person.last_name" required>
+              <p ng-show="newPersonForm.lastName.$invalid && !newPersonForm.lastName.$pristine" class="has-error">Last Name is invalid.</p>
+              <input class="form-control" name="lastName" type="text" ng-model="person.last_name" required>
             </div>
           </div>
           <br/>
@@ -30,7 +32,8 @@
               <label for="email">Email:</label>
             </div>
             <div class="col-md-6">
-              <input name="email" type="email" ng-model="person.email" required>
+              <p ng-show="newPersonForm.email.$invalid && !newPersonForm.email.$pristine" class="has-error">Email is invalid.</p>
+              <input class="form-control" name="email" type="email" ng-model="person.email" required>
             </div>
           </div>
           <br/>
@@ -39,7 +42,7 @@
               <label for="job">Job:</label>
             </div>
             <div class="col-md-6">
-              <input name="job" type="text" ng-model="person.job" required>
+              <input class="form-control" name="job" type="text" ng-model="person.job" required>
             </div>
           </div>
           <br/>
@@ -57,8 +60,9 @@
              <label for="birthDate">Date of Birth:</label>
             </div>
             <div class="col-md-6">
+              <p ng-show="newPersonForm.birthDate.$invalid && !newPersonForm.birthDate.$pristine" class="has-error">Birth Date is invalid.</p>
               <p class="input-group">
-                <input type="text" class="form-control" uib-datepicker-popup ng-model="person.birthdate" is-open="date1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                <input  class="form-control" name="birthDate" type="date" class="form-control" uib-datepicker-popup ng-model="person.birthdate" is-open="date1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" required/>
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="openDate()"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
@@ -71,8 +75,11 @@
               <label for="gender">Gender:</label>
             </div>
             <div class="col-md-6">
+              <p ng-show="newPersonForm.gender.$invalid && !newPersonForm.gender.$pristine" class="has-error">Gender is required.</p>
               <select
-                ng-model="person.gender">
+                name="gender"
+                class="form-control"
+                ng-model="person.gender" required>
                 <option value="M">Male</option>
                 <option value="F">Female</option>
                 <option value="N">N/A</option>
