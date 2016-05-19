@@ -84,8 +84,12 @@
     function destroyPerson(person) {
       if ($window.confirm("Do you want to proceed ?")) {
         personService.destroy(person.id).success(function(data){
-          $scope.people.splice($scope.people.indexOf(person),1);
           toaster.pop('success', "", "Person was deleted successfully.");
+          if ($state.current.name == 'personprofile') {
+            $scope.returnToList();
+          } else {
+            $scope.people.splice($scope.people.indexOf(person),1);
+          }
         }).error(function(){
            toaster.pop('error', "", "Could not delete person.");
         })      
