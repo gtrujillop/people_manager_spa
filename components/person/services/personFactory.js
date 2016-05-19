@@ -3,7 +3,7 @@
   person.service('personService', ['$http',
                                    '$stateParams',
                                    function ($http,                                                                   $stateParams) {
-    var urlBase = 'http://localhost:3000';
+    var urlBase = 'https://people-manager-api.herokuapp.com';
     var personService = {};
 
     personService.getAll = function () {
